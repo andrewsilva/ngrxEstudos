@@ -1,0 +1,16 @@
+{
+  "Usuarios":[
+    {
+      "id": 1,
+      "nome": "Leanne Graham",
+      "idade": 35,
+      "perfil": "admin"
+    },
+    {
+      "id": 2,
+      "nome": "Graham",
+      "idade": 22,
+      "perfil": "consultor"
+    }
+  ]
+}
