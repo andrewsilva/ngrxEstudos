@@ -1,5 +1,5 @@
 import { state } from '@angular/animations';
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { UsuarioModel } from './../../models/UsuarioModel';
 
 import * as fromUsuariosActions from './usuarios.actions';
@@ -47,11 +47,10 @@ const _usuariosReducer = createReducer(
   })),
   on(fromUsuariosActions.UpdateUsuarioSuccess, (state, { payload }) => ({
     ...state,
-    usuarios: [...state.usuarios].map((row)=>{
-      if(row.id == payload.id){
+    usuarios: [...state.usuarios].map((row) => {
+      if (row.id == payload.id) {
         return payload;
-      }
-      else{
+      } else {
         return row;
       }
     }),
@@ -63,16 +62,42 @@ const _usuariosReducer = createReducer(
   })),
   on(fromUsuariosActions.DeleteUsuarioSuccess, (state, { payload }) => ({
     ...state,
-    usuarios: [...state.usuarios].filter((filter)=> filter.id != payload),
+    usuarios: [...state.usuarios].filter((filter) => filter.id != payload),
     error: '',
   })),
   on(fromUsuariosActions.DeleteUsuarioFail, (state, { error }) => ({
     ...state,
     error: error,
-  })),
-
+  }))
 );
 
 export function usuariosReducer(state = initialState, action: Action) {
   return _usuariosReducer(state, action);
 }
+
+const getUsuariosFeatureState = createFeatureSelector<UsuariosState>('usuarios');
+
+export const getUsuarios = createSelector(
+  getUsuariosFeatureState,
+  (state: UsuariosState) => state.usuarios
+)
+
+export const getUsuario = createSelector(
+  getUsuariosFeatureState,
+  (state: UsuariosState) => state.usuario
+)
+
+export const getUsuarioErro = createSelector(
+  getUsuariosFeatureState,
+  (state: UsuariosState) => state.error
+)
+
+export const getUsuariosAdministradores = createSelector(
+  getUsuariosFeatureState,
+  (state: UsuariosState) => state.usuarios.filter((filter) => filter.perfil == 'Administrador')
+)
+
+export const getUsuariosIdadeMaiorQue50 = createSelector(
+  getUsuariosFeatureState,
+  (state: UsuariosState) => state.usuarios.filter((filter) => filter.idade >= 50)
+)
