@@ -12,13 +12,17 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { appReducer, appEffects } from './store/app-state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListaUsuariosAdminComponent } from './lista-usuarios-admin/lista-usuarios-admin.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarUsuariosComponent,
     MainComponent,
-    CadastroUsuariosComponent
+    CadastroUsuariosComponent,
+    ListaUsuariosAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FormsModule,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot(appEffects),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

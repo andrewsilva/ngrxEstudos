@@ -17,6 +17,18 @@
       "nome": "asdsad",
       "idade": "22",
       "perfil": "asdasd"
+    },
+    {
+      "id": 4,
+      "nome": "Usuario Novo",
+      "idade": "33",
+      "perfil": "Administrador"
+    },
+    {
+      "id": 6,
+      "nome": "User Editado",
+      "idade": "33",
+      "perfil": "Administrador"
     }
   ]
 }
