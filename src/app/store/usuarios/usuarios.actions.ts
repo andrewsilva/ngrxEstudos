@@ -27,19 +27,19 @@ export const enum UsuariosTypesAction {
 export const LoadUsuarios = createAction(UsuariosTypesAction.LOAD_USUARIOS);
 
 export const LoadUsuariosSuccess = createAction(
-  UsuariosTypesAction.CREATE_USUARIO_SUCCESS,
+  UsuariosTypesAction.LOAD_USUARIOS_SUCCESS,
   props<{ payload: UsuarioModel[] }>()
 );
 
 export const LoadUsuariosFail = createAction(
-  UsuariosTypesAction.CREATE_USUARIO_FAIL,
+  UsuariosTypesAction.LOAD_USUARIOS_FAIL,
   props<{ error: string }>()
 );
 
 //load ussuario
 export const LoadUsuario = createAction(
   UsuariosTypesAction.LOAD_USUARIO,
-  props<{ id: number }>()
+  props<{ payload: number }>()
 );
 
 export const LoadUsuarioSuccess = createAction(

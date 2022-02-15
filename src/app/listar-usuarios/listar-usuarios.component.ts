@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ListarUsuariosComponent implements OnInit {
   listaUsuarios$: Observable<UsuarioModel[]> = this.store.select(fromUsuariosSelector.getUsuarios);
+  usuario$: Observable<UsuarioModel> = this.store.select(fromUsuariosSelector.getUsuario);
 
   constructor(
     private store: Store<AppState>
@@ -20,6 +21,14 @@ export class ListarUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromUsuariosAction.LoadUsuarios());
+  }
+
+  editar(id: number){
+    this.store.dispatch(fromUsuariosAction.LoadUsuario({payload:id}));
+  }
+
+  excluir(id: number){
+    this.store.dispatch(fromUsuariosAction.DeleteUsuario({payload:id}));
   }
 
 }
